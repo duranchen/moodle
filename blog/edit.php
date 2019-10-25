@@ -64,6 +64,9 @@ if ($id) {
 
 $sitecontext = context_system::instance();
 $usercontext = context_user::instance($userid);
+
+require_login($courseid);
+
 if ($modid) {
     $PAGE->set_context($sitecontext);
 } else {
@@ -71,8 +74,6 @@ if ($modid) {
     $blognode = $PAGE->settingsnav->find('blogadd', null);
     $blognode->make_active();
 }
-
-require_login($courseid);
 
 if (empty($CFG->enableblogs)) {
     print_error('blogdisable', 'blog');
